@@ -1,0 +1,11 @@
+{
+  "name": "decideforme",
+  "version": "1.0.0",
+  "description": "No Country For Old Men",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "farid-moradi",
+  "license": "ISC"
+}
