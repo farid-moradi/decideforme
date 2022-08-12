@@ -1,0 +1,31 @@
+import { FireworksOptions, IBoundaries, Sizes } from './types.js';
+export declare class Fireworks {
+    private container;
+    private canvas;
+    private ctx;
+    private width;
+    private height;
+    private tick;
+    private timestamp;
+    private running;
+    private sound;
+    private resize;
+    private mouse;
+    private traces;
+    private explosions;
+    constructor(container: Element | HTMLCanvasElement, options?: FireworksOptions);
+    get isRunning(): boolean;
+    get version(): string;
+    start(): void;
+    stop(): void;
+    pause(): void;
+    clear(): void;
+    updateOptions(options: FireworksOptions): void;
+    updateSize({ width, height }?: Partial<Sizes>): void;
+    updateBoundaries(boundaries: Partial<IBoundaries>): void;
+    private render;
+    private initTrace;
+    private drawTrace;
+    private initExplosion;
+    private drawExplosion;
+}

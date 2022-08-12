@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <title>Decide For ME</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/fonts.min.css" rel="stylesheet" type=""/>
+    <style>
+        .middle {
+            position: absolute;
+            top:-20%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .from_Input{
+            border: none;
+            outline:none;
+        }
+        .from_Input:active{
+            border: none;
+            outline:none;
+        }
+
+        input, #title {
+          padding: 5px;
+          font-size: 16px;
+          font-family: 'Lucida Casual', 'Comic Sans MS';
+        }
+
+
+        .lang-fa {
+        	font-family : BMitra;
+        	font-size : 12px;
+        }
+
+        .lang-en {
+        	font-family : Tahoma;
+        	font-size : 20px;
+        }
+    </style>
+  </head>
+  <body>
+    
+
+    
+    <div class="container" id="topLevelDiv">
+      <div class="row mt-3">
+        <div class="col-3"></div>
+        <div class="col-6 middle" style="width: 100%; height: 30%;">
+            <center><div style="font-weight: bold; font-size: 60px; font-weight: 800;" class="mb-3" id="title"></div></center>
+            <div class="border rounded" style="height: 50px; border-color: coral;">
+                <input id="query" class="border-0 from_Input" style="width: calc( 100% - 100px); height: 45px; margin: auto; position: absolute;"/>
+                <input id="judge" type="image" style="height: 40px; height: 40px; float: right; display: block;" src="/icon/decide.png"/>
+            </div>
+            <div style="width: 100%; height: 30%; margin-top: 20%;"><div>
+                <center><span  id="note" style="font-weight: bold; font-size: 14px; font-weight: 200; color: rgb(101, 150, 240)">Enter the choices. Seperate them with comma. (Pizza, Brisket, Veggie Burger)
+                </span>
+                <span id="result" style="font-weight: bold;  font-size: 80px; font-weight: 1000; color: lime">
+                </span></center>
+            </div>
+        </div>
+        <div class="col-3"></div>
+      </div>
+    </div>
+    <script type="application/javascript" src="/js/jquery.js"></script>
+    <script type="application/javascript" src="/js/popper.min.js"></script>
+    <script type="application/javascript" src="/js/bootstrap.min.js"></script>
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            let titleSent = 'Decide For Me';
+            let title = document.querySelector('#title');
+            let string = title.innerHTML;
+            let letters = [];
+            title.innerHTML = '';
+            for (let i = 0; i < titleSent.length; i++) {
+                letters[i] = document.createElement('span');
+                letters[i].innerHTML = titleSent[i];
+                letters[i].style.color = getRandomColor();
+                title.appendChild(letters[i]);
+            }
+            let askInput = document.querySelector('#query').focus();
+        })
+
+        let judgeBtn = document.querySelector('#judge');
+        let askInput = document.querySelector('#query');
+        askInput.addEventListener('keypress', (e) => {
+            let decision;
+            if (e.key === 'Enter') {
+                decision = getDecision();
+                removeNote()
+                reportDecision(decision);
+            }
+        });
+
+        askInput.addEventListener('input', () => {
+        });
+        judgeBtn.addEventListener('click', (e) => {
+            let decision;
+            decision = getDecision();
+            removeNote()
+            reportDecision(decision);
+        });
+
+        function reportDecision(decision) {
+            let resultElement = document.querySelector('#result');
+            resultElement.innerHTML = decision.toUpperCase();
+        }
+
+        function removeNote() {
+            let note = document.querySelector('#note');
+            if (note)
+                note.parentNode.removeChild(note);
+        }
+
+
+        function getDecision() {
+            let query = askInput.value;
+            let queryTrimed = query.trim();
+            console.log(queryTrimed);
+
+            let choices;
+            choices = queryTrimed.split(',');
+            let numberOfChoices = choices.length;
+
+            decisionIndex = getRandomNumber(numberOfChoices);
+            console.log(decisionIndex);
+            console.log(choices[decisionIndex]);
+            return choices[decisionIndex];
+        }
+
+        function getRandomNumber(maxIndex) {
+            return Math.floor(Math.random() * maxIndex);
+        }
+
+        function getRandomColor() {
+            let ReturnColor = '#';
+            for (let i = 0; i < 6; i++) {
+                let colorIndex = Math.floor(Math.random() * 16);
+                let colorIndexString;
+                switch(colorIndex) {
+                    case 15:
+                        colorIndexString = 'F';
+                        break;
+                    case 14:
+                        colorIndexString = 'E';
+                        break;
+                    case 13:
+                        colorIndexString = 'D';
+                        break;
+                    case 12:
+                        colorIndexString = 'C';
+                        break;
+                    case 11:
+                        colorIndexString = 'B';
+                        break;
+                    case 10:
+                        colorIndexString = 'A';
+                        break;
+                    default:
+                        colorIndexString = colorIndex.toString();
+                        break;
+                }
+                ReturnColor += colorIndexString;
+            }
+            return ReturnColor;
+        }
+    </script>
+  </body>
+</html>
