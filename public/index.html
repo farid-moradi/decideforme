@@ -6,42 +6,8 @@
     <meta name="description" content="">
     <title>Decide For ME</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/css/fonts.min.css" rel="stylesheet" type=""/>
+    <link href="/css/style.css" rel="stylesheet">
     <style>
-        .middle {
-            position: absolute;
-            top:-20%;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-        }
-
-        .from_Input{
-            border: none;
-            outline:none;
-        }
-        .from_Input:active{
-            border: none;
-            outline:none;
-        }
-
-        input, #title {
-          padding: 5px;
-          font-size: 16px;
-          font-family: 'Lucida Casual', 'Comic Sans MS';
-        }
-
-
-        .lang-fa {
-        	font-family : BMitra;
-        	font-size : 12px;
-        }
-
-        .lang-en {
-        	font-family : Tahoma;
-        	font-size : 20px;
-        }
     </style>
   </head>
   <body>
@@ -70,106 +36,6 @@
     <script type="application/javascript" src="/js/jquery.js"></script>
     <script type="application/javascript" src="/js/popper.min.js"></script>
     <script type="application/javascript" src="/js/bootstrap.min.js"></script>
-    <script>
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            let titleSent = 'Decide For Me';
-            let title = document.querySelector('#title');
-            let string = title.innerHTML;
-            let letters = [];
-            title.innerHTML = '';
-            for (let i = 0; i < titleSent.length; i++) {
-                letters[i] = document.createElement('span');
-                letters[i].innerHTML = titleSent[i];
-                letters[i].style.color = getRandomColor();
-                title.appendChild(letters[i]);
-            }
-            let askInput = document.querySelector('#query').focus();
-        })
-
-        let judgeBtn = document.querySelector('#judge');
-        let askInput = document.querySelector('#query');
-        askInput.addEventListener('keypress', (e) => {
-            let decision;
-            if (e.key === 'Enter') {
-                decision = getDecision();
-                removeNote()
-                reportDecision(decision);
-            }
-        });
-
-        askInput.addEventListener('input', () => {
-        });
-        judgeBtn.addEventListener('click', (e) => {
-            let decision;
-            decision = getDecision();
-            removeNote()
-            reportDecision(decision);
-        });
-
-        function reportDecision(decision) {
-            let resultElement = document.querySelector('#result');
-            resultElement.innerHTML = decision.toUpperCase();
-        }
-
-        function removeNote() {
-            let note = document.querySelector('#note');
-            if (note)
-                note.parentNode.removeChild(note);
-        }
-
-
-        function getDecision() {
-            let query = askInput.value;
-            let queryTrimed = query.trim();
-            console.log(queryTrimed);
-
-            let choices;
-            choices = queryTrimed.split(',');
-            let numberOfChoices = choices.length;
-
-            decisionIndex = getRandomNumber(numberOfChoices);
-            console.log(decisionIndex);
-            console.log(choices[decisionIndex]);
-            return choices[decisionIndex];
-        }
-
-        function getRandomNumber(maxIndex) {
-            return Math.floor(Math.random() * maxIndex);
-        }
-
-        function getRandomColor() {
-            let ReturnColor = '#';
-            for (let i = 0; i < 6; i++) {
-                let colorIndex = Math.floor(Math.random() * 16);
-                let colorIndexString;
-                switch(colorIndex) {
-                    case 15:
-                        colorIndexString = 'F';
-                        break;
-                    case 14:
-                        colorIndexString = 'E';
-                        break;
-                    case 13:
-                        colorIndexString = 'D';
-                        break;
-                    case 12:
-                        colorIndexString = 'C';
-                        break;
-                    case 11:
-                        colorIndexString = 'B';
-                        break;
-                    case 10:
-                        colorIndexString = 'A';
-                        break;
-                    default:
-                        colorIndexString = colorIndex.toString();
-                        break;
-                }
-                ReturnColor += colorIndexString;
-            }
-            return ReturnColor;
-        }
-    </script>
+    <script type="application/javascript" src="/js/main.js"></script>
   </body>
 </html>

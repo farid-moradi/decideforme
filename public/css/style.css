@@ -1,0 +1,23 @@
+.middle {
+    position: absolute;
+    top:-20%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.from_Input{
+    border: none;
+    outline:none;
+}
+.from_Input:active{
+    border: none;
+    outline:none;
+}
+
+input, #title {
+  padding: 5px;
+  font-size: 16px;
+  font-family: 'Lucida Casual', 'Comic Sans MS';
+}
