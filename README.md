@@ -8,4 +8,4 @@ An express server to get a list of choices and recommend one randomly.
 
 *node index.js*
 
-http://localhost:3000
+http://{server ip}:3000
